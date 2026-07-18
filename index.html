@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0A0A0C" />
+  <title>Sania Kiran — Full Stack Developer · AI Agent Builder</title>
+  <meta name="description" content="Sania Kiran — MERN stack developer and AI agent builder. Engineering solutions in the quiet hours. Based in Lahore, Pakistan." />
+
+  <!-- Fonts: Syne (bold display), Inter (body), Fraunces (editorial accent) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&display=swap" rel="stylesheet" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================= -->
+  <!-- SKIP-ABLE INTRO LOADER                                         -->
+  <!-- ============================================================= -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <div class="loader__topline">
+        <span class="loader__label">VEIL &amp; STRIKE</span>
+        <button class="loader__skip" id="loaderSkip" type="button">Skip intro →</button>
+      </div>
+
+      <div class="loader__name-wrap">
+        <h1 class="loader__name" aria-label="Sania Kiran">Sania Kiran</h1>
+      </div>
+
+      <div class="loader__bottomline">
+        <span class="loader__role">MERN · AI AGENTS · BSCS</span>
+        <span class="loader__count" id="loaderCount">000</span>
+      </div>
+
+      <!-- diagonal cape-wipe that removes the loader -->
+      <div class="loader__wipe" id="loaderWipe" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- CUSTOM CURSOR (desktop / fine-pointer only)                   -->
+  <!-- ============================================================= -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__dot"></div>
+    <div class="cursor__ring">
+      <svg class="cursor__quill" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M3 21c5-1 9-4 12-9 2-3 4-7 6-10-3 2-7 4-10 6-5 3-8 7-9 12l1 1z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+        <path d="M8 16c2-2 4-3 6-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <span class="cursor__label" id="cursorLabel"></span>
+    </div>
+  </div>
+
+  <!-- THREE.JS VEIL BACKGROUND + GRAIN OVERLAY -->
+  <canvas class="bg-canvas" id="bgCanvas" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <!-- ============================================================= -->
+  <!-- PROGRESS / NAVIGATION                                          -->
+  <!-- ============================================================= -->
+  <header class="nav" id="nav">
+    <a href="#hero" class="nav__brand" data-cursor="label" data-cursor-label="top">
+      <span class="nav__mark">SK</span>
+      <span class="nav__brandtext">Sania Kiran</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#about"    data-cursor="label" data-cursor-label="story">About</a>
+      <a href="#work"     data-cursor="label" data-cursor-label="path">Work</a>
+      <a href="#projects" data-cursor="label" data-cursor-label="work">Projects</a>
+      <a href="#skills"   data-cursor="label" data-cursor-label="stack">Skills</a>
+      <a href="#contact"  data-cursor="label" data-cursor-label="connect">Contact</a>
+    </nav>
+    <a href="#contact" class="nav__cta magnetic" data-cursor="label" data-cursor-label="email">
+      <span>Get in touch</span>
+    </a>
+    <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Mobile slide-over menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav aria-label="Mobile">
+      <a href="#about"    data-mclose>About</a>
+      <a href="#work"     data-mclose>Work</a>
+      <a href="#projects" data-mclose>Projects</a>
+      <a href="#skills"   data-mclose>Skills</a>
+      <a href="#contact"  data-mclose>Contact</a>
+    </nav>
+  </div>
+
+  <main id="main">
+
+    <!-- ========================================================= -->
+    <!-- HERO                                                      -->
+    <!-- ========================================================= -->
+    <section class="hero" id="hero">
+      <div class="hero__meta hero__meta--left">
+        <span class="kicker">Lahore · Pakistan</span>
+        <span class="kicker">Available · 2026</span>
+      </div>
+      <div class="hero__meta hero__meta--right">
+        <span class="kicker">07 / BSCS</span>
+        <span class="kicker">3 yrs · MERN</span>
+      </div>
+
+      <div class="hero__core">
+        <p class="hero__reveal-line" data-hero-line>
+          <span class="hero__line-text">Engineering solutions</span>
+        </p>
+        <p class="hero__reveal-line hero__reveal-line--accent" data-hero-line>
+          <span class="hero__line-text">in the quiet hours.</span>
+        </p>
+
+        <div class="hero__nameblock" aria-label="Sania Kiran, Full Stack Developer">
+          <h1 class="hero__name" data-hero-name>SANIA<br/>KIRAN</h1>
+        </div>
+
+        <div class="hero__roles" data-hero-roles>
+          <span>Full Stack Developer</span>
+          <span class="hero__dot">•</span>
+          <span>AI Agent Builder</span>
+          <span class="hero__dot">•</span>
+          <span>BSCS Student</span>
+        </div>
+      </div>
+
+      <div class="hero__bottom">
+        <p class="hero__statement" data-hero-stmt>
+          By day — a CS student, tutor, and commuter. By night — building AI agents that fight
+          inefficiency, spam, and the manual grind. Code and knowledge are the strike.
+        </p>
+        <a href="#projects" class="hero__scroll" data-cursor="label" data-cursor-label="explore">
+          <span class="hero__scroll-text">Scroll to explore</span>
+          <span class="hero__scroll-line"></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- chevron strike divider -->
+    <div class="strike-divider" aria-hidden="true">
+      <span class="strike-divider__line"></span>
+      <span class="strike-divider__chevron"></span>
+      <span class="strike-divider__line"></span>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ABOUT — asymmetric two-column split                       -->
+    <!-- ========================================================= -->
+    <section class="about" id="about">
+      <header class="section-head section-head--about">
+        <span class="section-head__index">01 — Identity</span>
+        <h2 class="section-head__title" data-split>The quiet discipline<br class="br-desktop"/>behind the strike.</h2>
+      </header>
+
+      <div class="about__grid">
+        <div class="about__lede" data-parallax="foreground">
+          <p class="about__paragraph" data-reveal-line>
+            <span>Seventh-semester BSCS student specializing in full-stack development,</span>
+          </p>
+          <p class="about__paragraph" data-reveal-line>
+            <span>machine learning, and backend automation — with three years of MERN</span>
+          </p>
+          <p class="about__paragraph" data-reveal-line>
+            <span>stack experience shipped into real production systems.</span>
+          </p>
+          <p class="about__paragraph about__paragraph--muted" data-reveal-line>
+            <span>I balance coursework, inter-city commuting, teaching, and shipping work —</span>
+          </p>
+          <p class="about__paragraph about__paragraph--muted" data-reveal-line>
+            <span>not as a compromise, but as the discipline that defines how I build.</span>
+          </p>
+        </div>
+
+        <aside class="about__facts" data-parallax="background">
+          <div class="fact" data-reveal>
+            <span class="fact__label">Based</span>
+            <span class="fact__value">Raiwind / Lahore, PK</span>
+          </div>
+          <div class="fact" data-reveal>
+            <span class="fact__label">Focus</span>
+            <span class="fact__value">MERN · ML · Automation</span>
+          </div>
+          <div class="fact" data-reveal>
+            <span class="fact__label">Experience</span>
+            <span class="fact__value">3 years, production</span>
+          </div>
+          <div class="fact" data-reveal>
+            <span class="fact__label">Currently</span>
+            <span class="fact__value">Software Intern · Sand Dynamics</span>
+          </div>
+          <div class="fact" data-reveal>
+            <span class="fact__label">Studying</span>
+            <span class="fact__value">BSCS · 7th semester</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- chevron strike divider -->
+    <div class="strike-divider" aria-hidden="true">
+      <span class="strike-divider__line"></span>
+      <span class="strike-divider__chevron"></span>
+      <span class="strike-divider__line"></span>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- EXPERIENCE TIMELINE — left-rail with connecting line       -->
+    <!-- ========================================================= -->
+    <section class="work" id="work">
+      <header class="section-head section-head--work">
+        <span class="section-head__index">02 — Trajectory</span>
+        <h2 class="section-head__title" data-split>A path built between<br class="br-desktop"/>lectures and deploys.</h2>
+      </header>
+
+      <ol class="timeline" aria-label="Work experience, most recent first">
+
+        <li class="tl-item" data-tl>
+          <div class="tl-item__rail">
+            <span class="tl-item__node"></span>
+            <span class="tl-item__connector"></span>
+          </div>
+          <div class="tl-item__body">
+            <div class="tl-item__head">
+              <span class="tl-item__when">Mar — Jun 2026</span>
+              <span class="tl-item__kind">Internship</span>
+            </div>
+            <h3 class="tl-item__role">Software Intern</h3>
+            <p class="tl-item__org">Sand Dynamics</p>
+            <ul class="tl-item__points">
+              <li>Built full-stack architecture for an AI-powered campaign verification platform.</li>
+              <li>Trained and deployed an ML spam classifier reaching <strong>97% accuracy</strong>.</li>
+              <li>Integrated a cybersecurity layer (SHA-256 hashing) for data integrity.</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="tl-item" data-tl>
+          <div class="tl-item__rail">
+            <span class="tl-item__node"></span>
+            <span class="tl-item__connector"></span>
+          </div>
+          <div class="tl-item__body">
+            <div class="tl-item__head">
+              <span class="tl-item__when">2024 — Present</span>
+              <span class="tl-item__kind">Freelance</span>
+            </div>
+            <h3 class="tl-item__role">Full Stack Developer</h3>
+            <p class="tl-item__org">Freelance &amp; Open Source</p>
+            <ul class="tl-item__points">
+              <li>Delivered production MERN applications for clients in Saudi Arabia.</li>
+              <li>Engineered AI agent pipelines integrating LLMs with custom automation layers.</li>
+              <li>Built student-facing tools used across campus, including scheduling platforms.</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="tl-item" data-tl>
+          <div class="tl-item__rail">
+            <span class="tl-item__node"></span>
+          </div>
+          <div class="tl-item__body">
+            <div class="tl-item__head">
+              <span class="tl-item__when">2023 — 2024</span>
+              <span class="tl-item__kind">Teaching</span>
+            </div>
+            <h3 class="tl-item__role">Programming Tutor</h3>
+            <p class="tl-item__org">Campus Lab &amp; Community</p>
+            <ul class="tl-item__points">
+              <li>Taught Python and web fundamentals to junior students and beginners.</li>
+              <li>Created step-by-step curriculum combining theory and live-coded examples.</li>
+            </ul>
+          </div>
+        </li>
+
+      </ol>
+    </section>
+
+    <!-- chevron strike divider -->
+    <div class="strike-divider" aria-hidden="true">
+      <span class="strike-divider__line"></span>
+      <span class="strike-divider__chevron"></span>
+      <span class="strike-divider__line"></span>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- PROJECTS — alternating layout, large numbers               -->
+    <!-- ========================================================= -->
+    <section class="projects" id="projects">
+      <header class="section-head section-head--projects">
+        <span class="section-head__index">03 — Work</span>
+        <h2 class="section-head__title" data-split>The strike. Things shipped<br class="br-desktop"/>in the quiet hours.</h2>
+      </header>
+
+      <!-- floating hover-reveal panel -->
+      <div class="projects__reveal" id="projReveal" aria-hidden="true">
+        <div class="projects__reveal-inner">
+          <span class="projects__reveal-kind" id="projRevealKind"></span>
+          <div class="projects__reveal-img"></div>
+          <span class="projects__reveal-cta">View →</span>
+        </div>
+      </div>
+
+      <ul class="proj-list">
+
+        <li class="proj proj--right" data-proj-item>
+          <a class="proj__link" href="https://github.com/Burka-Developer" target="_blank" rel="noopener"
+             data-cursor="label" data-cursor-label="VIEW"
+             data-proj='{ "kind":"AI · AUTOMATION", "img":"01" }'>
+            <span class="proj__index">01</span>
+            <div class="proj__content">
+              <h3 class="proj__title">AI Email Agent</h3>
+              <span class="proj__tagline">LLM-powered email triage &amp; auto-response</span>
+            </div>
+            <span class="proj__meta">
+              <span class="proj__tags">
+                <span class="proj__tag">Python</span>
+                <span class="proj__tag">LLM</span>
+                <span class="proj__tag">Automation</span>
+              </span>
+              <span class="proj__metric">Production</span>
+            </span>
+            <span class="proj__hover-line"></span>
+          </a>
+        </li>
+
+        <li class="proj proj--left" data-proj-item>
+          <a class="proj__link" href="https://github.com/Burka-Developer" target="_blank" rel="noopener"
+             data-cursor="label" data-cursor-label="VIEW"
+             data-proj='{ "kind":"AI · ML", "img":"02" }'>
+            <span class="proj__index">02</span>
+            <div class="proj__content">
+              <h3 class="proj__title">Anomaly Detection Pipeline</h3>
+              <span class="proj__tagline">Isolation forest model on streaming data</span>
+            </div>
+            <span class="proj__meta">
+              <span class="proj__tags">
+                <span class="proj__tag">Python</span>
+                <span class="proj__tag">ML</span>
+                <span class="proj__tag">Docker</span>
+              </span>
+              <span class="proj__metric">Deployed</span>
+            </span>
+            <span class="proj__hover-line"></span>
+          </a>
+        </li>
+
+        <li class="proj proj--right" data-proj-item>
+          <a class="proj__link" href="https://github.com/Burka-Developer" target="_blank" rel="noopener"
+             data-cursor="label" data-cursor-label="VIEW"
+             data-proj='{ "kind":"ML · SECURITY", "img":"03" }'>
+            <span class="proj__index">03</span>
+            <div class="proj__content">
+              <h3 class="proj__title">Spam Detection &amp; Verification System</h3>
+              <span class="proj__tagline">ML classifier with SHA-256 integrity layer</span>
+            </div>
+            <span class="proj__meta">
+              <span class="proj__tags">
+                <span class="proj__tag">ML</span>
+                <span class="proj__tag">SHA-256</span>
+                <span class="proj__tag">Security</span>
+              </span>
+              <span class="proj__metric">97% catch rate</span>
+            </span>
+            <span class="proj__hover-line"></span>
+          </a>
+        </li>
+
+        <li class="proj proj--left" data-proj-item>
+          <a class="proj__link" href="https://github.com/Burka-Developer" target="_blank" rel="noopener"
+             data-cursor="label" data-cursor-label="VIEW"
+             data-proj='{ "kind":"FULL STACK", "img":"04" }'>
+            <span class="proj__index">04</span>
+            <div class="proj__content">
+              <h3 class="proj__title">Service Business Website</h3>
+              <span class="proj__tagline">Full-stack build · Saudi client</span>
+            </div>
+            <span class="proj__meta">
+              <span class="proj__tags">
+                <span class="proj__tag">MERN</span>
+                <span class="proj__tag">REST</span>
+                <span class="proj__tag">Client</span>
+              </span>
+              <span class="proj__metric">Production</span>
+            </span>
+            <span class="proj__hover-line"></span>
+          </a>
+        </li>
+
+        <li class="proj proj--right" data-proj-item>
+          <a class="proj__link" href="https://github.com/Burka-Developer" target="_blank" rel="noopener"
+             data-cursor="label" data-cursor-label="VIEW"
+             data-proj='{ "kind":"E-COMMERCE", "img":"05" }'>
+            <span class="proj__index">05</span>
+            <div class="proj__content">
+              <h3 class="proj__title">Full-Stack E-commerce Platform</h3>
+              <span class="proj__tagline">Payments · auth · admin dashboard</span>
+            </div>
+            <span class="proj__meta">
+              <span class="proj__tags">
+                <span class="proj__tag">MERN</span>
+                <span class="proj__tag">Payments</span>
+                <span class="proj__tag">Admin</span>
+              </span>
+              <span class="proj__metric">Saudi client</span>
+            </span>
+            <span class="proj__hover-line"></span>
+          </a>
+        </li>
+
+      </ul>
+
+      <!-- marquee strip -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>AVAILABLE FOR WORK · 2026</span><span class="marquee__star">✦</span>
+          <span>MERN · AI AGENTS · AUTOMATION</span><span class="marquee__star">✦</span>
+          <span>ENGINEERING IN THE QUIET HOURS</span><span class="marquee__star">✦</span>
+          <span>AVAILABLE FOR WORK · 2026</span><span class="marquee__star">✦</span>
+          <span>MERN · AI AGENTS · AUTOMATION</span><span class="marquee__star">✦</span>
+          <span>ENGINEERING IN THE QUIET HOURS</span><span class="marquee__star">✦</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- chevron strike divider -->
+    <div class="strike-divider" aria-hidden="true">
+      <span class="strike-divider__line"></span>
+      <span class="strike-divider__chevron"></span>
+      <span class="strike-divider__line"></span>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- SKILLS — staggered masonry grid                            -->
+    <!-- ========================================================= -->
+    <section class="skills" id="skills">
+      <header class="section-head section-head--skills">
+        <span class="section-head__index">04 — Arsenal</span>
+        <h2 class="section-head__title" data-split>The tools behind<br class="br-desktop"/>the strike.</h2>
+      </header>
+
+      <div class="skills__clusters">
+
+        <article class="cluster cluster--tall" data-cluster>
+          <header class="cluster__head">
+            <span class="cluster__num">/01</span>
+            <h3 class="cluster__title">Languages &amp; Stack</h3>
+          </header>
+          <ul class="cluster__tags">
+            <li>Python</li>
+            <li>JavaScript</li>
+            <li>Node.js</li>
+            <li>Express.js</li>
+            <li>MongoDB</li>
+            <li>React</li>
+            <li>MERN</li>
+          </ul>
+        </article>
+
+        <article class="cluster cluster--offset" data-cluster>
+          <header class="cluster__head">
+            <span class="cluster__num">/02</span>
+            <h3 class="cluster__title">AI &amp; Machine Learning</h3>
+          </header>
+          <ul class="cluster__tags">
+            <li>Machine Learning</li>
+            <li>Unsupervised Learning</li>
+            <li>Isolation Forest</li>
+            <li>Spam Classification</li>
+            <li>Data Parsing</li>
+            <li>LLM Integrations</li>
+            <li>AI Agents</li>
+          </ul>
+        </article>
+
+        <article class="cluster" data-cluster>
+          <header class="cluster__head">
+            <span class="cluster__num">/03</span>
+            <h3 class="cluster__title">Tools &amp; Cloud</h3>
+          </header>
+          <ul class="cluster__tags">
+            <li>Docker</li>
+            <li>Hugging Face Spaces</li>
+            <li>Git</li>
+            <li>Cloud Run</li>
+            <li>Linux VMs</li>
+            <li>SHA-256 / Integrity</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- chevron strike divider -->
+    <div class="strike-divider" aria-hidden="true">
+      <span class="strike-divider__line"></span>
+      <span class="strike-divider__chevron"></span>
+      <span class="strike-divider__line"></span>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- CONTACT — closing statement moment                         -->
+    <!-- ========================================================= -->
+    <section class="contact" id="contact">
+      <div class="contact__inner">
+        <span class="section-head__index contact__index">05 — Signal</span>
+        <h2 class="contact__big">
+          <span class="contact__line" data-split>Have something</span>
+          <span class="contact__line contact__line--accent" data-split>that needs the strike?</span>
+        </h2>
+
+        <div class="contact__cta-block">
+          <a class="contact__email magnetic" href="mailto:developersaniakiran@gmail.com"
+             data-cursor="label" data-cursor-label="SEND">
+            <span class="contact__email-text">developersaniakiran@gmail.com</span>
+            <span class="contact__email-arrow">→</span>
+          </a>
+        </div>
+
+        <div class="contact__grid">
+          <a class="clink" href="tel:+923336844304"
+             data-cursor="label" data-cursor-label="call">
+            <span class="clink__label">Phone</span>
+            <span class="clink__value">+92 333 6844304</span>
+            <span class="clink__arrow">↗</span>
+          </a>
+
+          <a class="clink" href="https://linkedin.com/in/sania-kiran" target="_blank" rel="noopener"
+             data-cursor="label" data-cursor-label="open">
+            <span class="clink__label">LinkedIn</span>
+            <span class="clink__value">/in/sania-kiran</span>
+            <span class="clink__arrow">↗</span>
+          </a>
+
+          <a class="clink" href="https://github.com/Burka-Developer" target="_blank" rel="noopener"
+             data-cursor="label" data-cursor-label="open">
+            <span class="clink__label">GitHub</span>
+            <span class="clink__value">/Burka-Developer</span>
+            <span class="clink__arrow">↗</span>
+          </a>
+
+          <a class="clink" href="https://huggingface.co/saniakiran" target="_blank" rel="noopener"
+             data-cursor="label" data-cursor-label="open">
+            <span class="clink__label">Hugging Face</span>
+            <span class="clink__value">/saniakiran</span>
+            <span class="clink__arrow">↗</span>
+          </a>
+
+          <div class="clink clink--static">
+            <span class="clink__label">Location</span>
+            <span class="clink__value">Raiwind / Lahore, PK</span>
+            <span class="clink__arrow">✦</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- FOOTER                                                    -->
+    <!-- ========================================================= -->
+    <footer class="footer">
+      <div class="footer__inner">
+        <div class="footer__row">
+          <span class="footer__mark">SK</span>
+          <p class="footer__credit">
+            Designed &amp; built by Sania Kiran — knowledge as the weapon, code as the strike.
+          </p>
+        </div>
+        <div class="footer__row footer__row--bottom">
+          <span>© <span id="year"></span> Sania Kiran</span>
+          <span class="footer__loc">Lahore · Pakistan</span>
+          <a href="#hero" class="magnetic" data-cursor="label" data-cursor-label="top">Back to top ↑</a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ============================================================= -->
+  <!-- LIBRARIES (CDN) + APP SCRIPT                                  -->
+  <!-- ============================================================= -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
