@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OG Image Generator — Sania Kiran</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500&family=Fraunces:ital,opsz,wght@1,9..144,400&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: Inter, system-ui, sans-serif;
+      color: #999;
+    }
+    .instructions {
+      margin-bottom: 24px;
+      font-size: 14px;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .instructions code {
+      background: #333;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 13px;
+    }
+
+    .og-card {
+      width: 1200px;
+      height: 630px;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 20% 30%, #1a0a14 0%, #0A0A0C 55%);
+      font-family: Inter, system-ui, sans-serif;
+    }
+
+    /* Subtle border inset */
+    .og-card::before {
+      content: "";
+      position: absolute;
+      inset: 40px;
+      border: 1px solid rgba(242, 239, 233, 0.08);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    /* Cape gradient wash top-right */
+    .og-card::after {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -100px;
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(177, 18, 63, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .og-top {
+      position: absolute;
+      top: 70px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .og-kicker {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(242, 239, 233, 0.45);
+    }
+
+    /* Chevron motif */
+    .og-chevron {
+      position: absolute;
+      top: 175px;
+      left: 80px;
+    }
+    .og-chevron::before,
+    .og-chevron::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 1.5px;
+      background: #B1123F;
+      top: 0;
+    }
+    .og-chevron::before {
+      transform: rotate(30deg);
+      transform-origin: left center;
+    }
+    .og-chevron::after {
+      left: 14px;
+      transform: rotate(-30deg);
+      transform-origin: left center;
+    }
+
+    .og-name {
+      position: absolute;
+      top: 215px;
+      left: 80px;
+      font-family: "Syne", sans-serif;
+      font-weight: 800;
+      font-size: 100px;
+      line-height: 0.92;
+      letter-spacing: -4px;
+      color: #F2EFE9;
+    }
+
+    /* Gold accent bar */
+    .og-gold-bar {
+      position: absolute;
+      top: 420px;
+      left: 80px;
+      width: 120px;
+      height: 2px;
+      background: #E0B352;
+    }
+
+    .og-role {
+      position: absolute;
+      top: 448px;
+      left: 80px;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: rgba(242, 239, 233, 0.7);
+    }
+    .og-role .dot {
+      color: #E0B352;
+      margin: 0 8px;
+    }
+
+    .og-tagline {
+      position: absolute;
+      top: 500px;
+      left: 80px;
+      font-family: "Fraunces", Georgia, serif;
+      font-style: italic;
+      font-size: 17px;
+      color: rgba(242, 239, 233, 0.38);
+    }
+
+    /* Divider line */
+    .og-divider {
+      position: absolute;
+      bottom: 68px;
+      left: 80px;
+      right: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #B1123F 50%, transparent);
+    }
+
+    /* Bottom tech list */
+    .og-tech {
+      position: absolute;
+      bottom: 38px;
+      left: 80px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(242, 239, 233, 0.32);
+    }
+
+    /* SK mark */
+    .og-mark {
+      position: absolute;
+      bottom: 100px;
+      right: 80px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(242, 239, 233, 0.12);
+      display: grid;
+      place-items: center;
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: rgba(242, 239, 233, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <p class="instructions">
+    Open this file in Chrome → right-click the card → <code>Inspect</code> → select the <code>.og-card</code> element<br>
+    → right-click in DevTools → <code>Capture node screenshot</code>. Save as <code>og-image.png</code> in your <code>assets/</code> folder.
+  </p>
+
+  <div class="og-card">
+    <div class="og-top">
+      <span class="og-kicker">Portfolio · 2026</span>
+      <span class="og-kicker">Lahore · Pakistan</span>
+    </div>
+
+    <div class="og-chevron"></div>
+
+    <div class="og-name">SANIA<br>KIRAN</div>
+
+    <div class="og-gold-bar"></div>
+
+    <div class="og-role">
+      Full Stack Developer<span class="dot">·</span>AI Agent Builder
+    </div>
+
+    <div class="og-tagline">Engineering solutions in the quiet hours.</div>
+
+    <div class="og-divider"></div>
+
+    <span class="og-tech">MERN · Python · ML · AI Agents · Docker · Automation</span>
+
+    <div class="og-mark">SK</div>
+  </div>
+</body>
+</html>

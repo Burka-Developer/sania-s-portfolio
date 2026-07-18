@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glow" cx="20%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#1a0a14"/>
+      <stop offset="100%" stop-color="#0A0A0C"/>
+    </radialGradient>
+    <linearGradient id="capeLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="50%" stop-color="#B1123F"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Subtle border -->
+  <rect x="40" y="40" width="1120" height="550" rx="4" fill="none" stroke="rgba(242,239,233,0.08)" stroke-width="1"/>
+
+  <!-- Top-left kicker -->
+  <text x="80" y="90" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" letter-spacing="3" fill="rgba(242,239,233,0.5)" text-transform="uppercase">PORTFOLIO · 2026</text>
+
+  <!-- Top-right kicker -->
+  <text x="1120" y="90" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="500" letter-spacing="3" fill="rgba(242,239,233,0.5)" text-anchor="end">LAHORE · PAKISTAN</text>
+
+  <!-- Chevron motif — strike mark -->
+  <g transform="translate(80, 200)">
+    <line x1="0" y1="0" x2="16" y2="12" stroke="#B1123F" stroke-width="1.5"/>
+    <line x1="16" y1="12" x2="32" y2="0" stroke="#B1123F" stroke-width="1.5"/>
+  </g>
+
+  <!-- Main name -->
+  <text x="80" y="300" font-family="Syne, Arial Narrow, sans-serif" font-size="98" font-weight="800" letter-spacing="-4" fill="#F2EFE9">SANIA</text>
+  <text x="80" y="395" font-family="Syne, Arial Narrow, sans-serif" font-size="98" font-weight="800" letter-spacing="-4" fill="#F2EFE9">KIRAN</text>
+
+  <!-- Gold accent line -->
+  <rect x="80" y="420" width="120" height="2" fill="#E0B352"/>
+
+  <!-- Role -->
+  <text x="80" y="470" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="500" letter-spacing="1" fill="rgba(242,239,233,0.7)">Full Stack Developer</text>
+  <text x="295" y="470" font-family="Inter, system-ui, sans-serif" font-size="20" fill="#E0B352">·</text>
+  <text x="315" y="470" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="500" letter-spacing="1" fill="rgba(242,239,233,0.7)">AI Agent Builder</text>
+
+  <!-- Tagline -->
+  <text x="80" y="520" font-family="Georgia, serif" font-size="17" font-style="italic" fill="rgba(242,239,233,0.4)">Engineering solutions in the quiet hours.</text>
+
+  <!-- Bottom cape line divider -->
+  <rect x="80" y="560" width="1040" height="1" fill="url(#capeLine)"/>
+
+  <!-- Bottom skills -->
+  <text x="80" y="590" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" letter-spacing="2.5" fill="rgba(242,239,233,0.35)">MERN · PYTHON · ML · AI AGENTS · DOCKER · AUTOMATION</text>
+
+  <!-- SK mark bottom-right -->
+  <circle cx="1090" cy="520" r="24" fill="none" stroke="rgba(242,239,233,0.12)" stroke-width="1"/>
+  <text x="1090" y="526" font-family="Syne, sans-serif" font-size="14" font-weight="700" fill="rgba(242,239,233,0.4)" text-anchor="middle">SK</text>
+
+  <!-- Decorative cape gradient wash (top-right) -->
+  <ellipse cx="900" cy="100" rx="300" ry="200" fill="#B1123F" opacity="0.04"/>
+</svg>
