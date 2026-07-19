@@ -63,7 +63,7 @@
         "jobTitle": "Full Stack Developer & AI Agent Builder",
         "description": "Full Stack Developer specializing in MERN stack, AI agents, machine learning, and backend automation with 3+ years of production experience.",
         "email": "developersaniakiran@gmail.com",
-        "telephone": "+923336844304",
+
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Lahore",
@@ -207,6 +207,7 @@
   <!-- ============================================================= -->
   <!-- PROGRESS / NAVIGATION                                          -->
   <!-- ============================================================= -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
   <header class="nav" id="nav">
     <a href="#hero" class="nav__brand" data-cursor="label" data-cursor-label="top">
       <span class="nav__mark">SK</span>
@@ -244,6 +245,7 @@
     <!-- HERO                                                      -->
     <!-- ========================================================= -->
     <section class="hero" id="hero">
+      <canvas class="particle-canvas" id="particleCanvas" aria-hidden="true"></canvas>
       <div class="hero__meta hero__meta--left">
         <span class="kicker">Lahore · Pakistan</span>
         <span class="kicker">Available · 2026</span>
@@ -453,18 +455,18 @@
       <ul class="proj-list">
 
         <li class="proj proj--right" data-proj-item>
-          <a class="proj__link" href="https://github.com/Burka-Developer" target="_blank" rel="noopener"
+          <a class="proj__link" href="https://github.com/Burka-Developer/auto-prompts" target="_blank" rel="noopener"
              data-cursor="label" data-cursor-label="VIEW"
              data-proj='{ "kind":"AI · AUTOMATION", "img":"01" }'>
             <span class="proj__index">01</span>
             <div class="proj__content">
-              <h3 class="proj__title">AI Email Agent</h3>
-              <span class="proj__tagline">LLM-powered email triage &amp; auto-response</span>
+              <h3 class="proj__title">Auto Prompts</h3>
+              <span class="proj__tagline">YouTube automation with AI-generated prompts</span>
             </div>
             <span class="proj__meta">
               <span class="proj__tags">
                 <span class="proj__tag">Python</span>
-                <span class="proj__tag">LLM</span>
+                <span class="proj__tag">YouTube</span>
                 <span class="proj__tag">Automation</span>
               </span>
               <span class="proj__metric">Production</span>
@@ -474,7 +476,7 @@
         </li>
 
         <li class="proj proj--left" data-proj-item>
-          <a class="proj__link" href="https://github.com/Burka-Developer" target="_blank" rel="noopener"
+          <a class="proj__link" href="https://github.com/Burka-Developer/data-analyzer-agent-" target="_blank" rel="noopener"
              data-cursor="label" data-cursor-label="VIEW"
              data-proj='{ "kind":"AI · ML", "img":"02" }'>
             <span class="proj__index">02</span>
@@ -495,7 +497,7 @@
         </li>
 
         <li class="proj proj--right" data-proj-item>
-          <a class="proj__link" href="https://github.com/Burka-Developer" target="_blank" rel="noopener"
+          <a class="proj__link" href="https://huggingface.co/spaces/saniakiran/spam-detection-app" target="_blank" rel="noopener"
              data-cursor="label" data-cursor-label="VIEW"
              data-proj='{ "kind":"ML · SECURITY", "img":"03" }'>
             <span class="proj__index">03</span>
@@ -516,7 +518,7 @@
         </li>
 
         <li class="proj proj--left" data-proj-item>
-          <a class="proj__link" href="https://github.com/Burka-Developer" target="_blank" rel="noopener"
+          <a class="proj__link" href="https://huggingface.co/spaces/saniakiran/sheetQA" target="_blank" rel="noopener"
              data-cursor="label" data-cursor-label="VIEW"
              data-proj='{ "kind":"FULL STACK", "img":"04" }'>
             <span class="proj__index">04</span>
@@ -537,7 +539,7 @@
         </li>
 
         <li class="proj proj--right" data-proj-item>
-          <a class="proj__link" href="https://github.com/Burka-Developer" target="_blank" rel="noopener"
+          <a class="proj__link" href="https://github.com/Burka-Developer/e-commerce-" target="_blank" rel="noopener"
              data-cursor="label" data-cursor-label="VIEW"
              data-proj='{ "kind":"E-COMMERCE", "img":"05" }'>
             <span class="proj__index">05</span>
@@ -552,6 +554,27 @@
                 <span class="proj__tag">Admin</span>
               </span>
               <span class="proj__metric">Saudi client</span>
+            </span>
+            <span class="proj__hover-line"></span>
+          </a>
+        </li>
+
+        <li class="proj proj--left" data-proj-item>
+          <a class="proj__link" href="https://huggingface.co/spaces/saniakiran/endpoint" target="_blank" rel="noopener"
+             data-cursor="label" data-cursor-label="VIEW"
+             data-proj='{ "kind":"TOOL · UTILITY", "img":"06" }'>
+            <span class="proj__index">06</span>
+            <div class="proj__content">
+              <h3 class="proj__title">YouTube Video Downloader</h3>
+              <span class="proj__tagline">Download YouTube videos via link endpoint</span>
+            </div>
+            <span class="proj__meta">
+              <span class="proj__tags">
+                <span class="proj__tag">Python</span>
+                <span class="proj__tag">API</span>
+                <span class="proj__tag">YouTube</span>
+              </span>
+              <span class="proj__metric">Live</span>
             </span>
             <span class="proj__hover-line"></span>
           </a>
@@ -667,12 +690,6 @@
         </div>
 
         <div class="contact__grid">
-          <a class="clink" href="tel:+923336844304"
-             data-cursor="label" data-cursor-label="call">
-            <span class="clink__label">Phone</span>
-            <span class="clink__value">+92 333 6844304</span>
-            <span class="clink__arrow">↗</span>
-          </a>
 
           <a class="clink" href="https://linkedin.com/in/sania-kiran" target="_blank" rel="noopener"
              data-cursor="label" data-cursor-label="open">

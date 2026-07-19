@@ -64,8 +64,8 @@
     });
 
     const tick = () => {
-      rx += (mx - rx) * 0.18;
-      ry += (my - ry) * 0.18;
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
       ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
       requestAnimationFrame(tick);
     };
@@ -282,13 +282,12 @@
     const stmt  = document.querySelector("[data-hero-stmt]");
 
     const tl = gsap.timeline({ delay: 0.2 });
-    tl.to(lines, { y: "0%", duration: 1.0, ease: "expo.out", stagger: 0.12 });
-    tl.to(name,  { opacity: 1, duration: 0.05 }, "-=0.4")
-      .to(name, { scale: 1, duration: 1.4, ease: "power3.out" })
-      .fromTo(name, { scale: 1.08, filter: "blur(8px)" },
-              { scale: 1, filter: "blur(0px)", duration: 1.6, ease: "power3.out" }, "<");
-    tl.to(roles, { opacity: 1, duration: 0.6, ease: "power2.out" }, "-=0.7");
-    tl.from(stmt, { opacity: 0, y: 20, duration: 0.8, ease: "power2.out" }, "-=0.5");
+    tl.to(lines, { y: "0%", duration: 1.2, ease: "expo.out", stagger: 0.14 });
+    tl.to(name,  { opacity: 1, duration: 0.05 }, "-=0.5")
+      .fromTo(name, { scale: 1.04, filter: "blur(4px)" },
+              { scale: 1, filter: "blur(0px)", duration: 1.8, ease: "power3.out" }, "<");
+    tl.to(roles, { opacity: 1, duration: 0.8, ease: "power2.out" }, "-=0.9");
+    tl.from(stmt, { opacity: 0, y: 16, duration: 1.0, ease: "power3.out" }, "-=0.6");
   }
 
   /* ----------------------------------------------------------
@@ -333,7 +332,7 @@
     // about paragraph lines
     document.querySelectorAll("[data-reveal-line] span").forEach((span, i) => {
       gsap.to(span, {
-        y: "0%", duration: 1.0, ease: "expo.out", delay: i * 0.06,
+        y: "0%", duration: 1.1, ease: "power3.out", delay: i * 0.06,
         scrollTrigger: { trigger: span.parentElement, start: "top 82%", once: true }
       });
     });
@@ -341,7 +340,7 @@
     // facts
     document.querySelectorAll("[data-reveal]").forEach((el, i) => {
       gsap.to(el, {
-        opacity: 1, y: 0, duration: 0.7, ease: "power2.out", delay: i * 0.08,
+        opacity: 1, y: 0, duration: 0.85, ease: "power3.out", delay: i * 0.08,
         scrollTrigger: { trigger: el, start: "top 88%", once: true }
       });
     });
@@ -381,7 +380,7 @@
       gsap.fromTo(el.querySelector(".strike-divider__chevron"), {
         opacity: 0, scale: 0.5
       }, {
-        opacity: 1, scale: 1, duration: 0.7, ease: "back.out(2)",
+        opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.4)",
         delay: 0.5,
         scrollTrigger: { trigger: el, start: "top 90%", once: true }
       });
@@ -390,7 +389,7 @@
     // project cards stagger
     document.querySelectorAll(".proj").forEach((el, i) => {
       gsap.fromTo(el, { opacity: 0, y: 50 }, {
-        opacity: 1, y: 0, duration: 0.9, ease: "power3.out", delay: i * 0.1,
+        opacity: 1, y: 0, duration: 1.0, ease: "power3.out", delay: i * 0.1,
         scrollTrigger: { trigger: el, start: "top 85%", once: true }
       });
     });
@@ -411,7 +410,7 @@
           trigger: el.closest("section"),
           start: "top bottom",
           end: "bottom top",
-          scrub: 1.5
+          scrub: 2.2
         }
       });
     });
@@ -440,7 +439,7 @@
           trigger: factsEl.closest("section"),
           start: "top bottom",
           end: "bottom top",
-          scrub: 1.8
+          scrub: 2.2
         }
       });
     }
@@ -603,18 +602,263 @@
   }
 
   /* ----------------------------------------------------------
+     13 · INTERACTIVE 3D PARTICLE CONSTELLATION
+     ---------------------------------------------------------- */
+  function initParticleConstellation() {
+    if (prefersReduced || typeof THREE === "undefined") return;
+    const canvas = document.getElementById("particleCanvas");
+    if (!canvas) return;
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas, alpha: true, antialias: false, powerPreference: "high-performance"
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    camera.position.z = 5;
+
+    const count = finePointer ? 150 : 60;
+    const positions = new Float32Array(count * 3);
+    const velocities = [];
+
+    for (let i = 0; i < count; i++) {
+      positions[i * 3]     = (Math.random() - 0.5) * 10;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 6;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 4;
+      velocities.push({
+        x: (Math.random() - 0.5) * 0.003,
+        y: (Math.random() - 0.5) * 0.003,
+        z: (Math.random() - 0.5) * 0.001
+      });
+    }
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
+    const material = new THREE.PointsMaterial({
+      color: 0xE0B352,
+      size: 0.04,
+      transparent: true,
+      opacity: 0.8,
+      blending: THREE.AdditiveBlending,
+      sizeAttenuation: true
+    });
+
+    const points = new THREE.Points(geometry, material);
+    scene.add(points);
+
+    const lineGeometry = new THREE.BufferGeometry();
+    const lineMaterial = new THREE.LineBasicMaterial({
+      color: 0xB1123F,
+      transparent: true,
+      opacity: 0.15,
+      blending: THREE.AdditiveBlending
+    });
+    const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+    scene.add(lines);
+
+    let mouseX = 0, mouseY = 0;
+    window.addEventListener("mousemove", (e) => {
+      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    }, { passive: true });
+
+    const CONNECTION_DIST = 1.8;
+    const MAX_CONNECTIONS = 80;
+
+    function animate() {
+      const pos = geometry.attributes.position.array;
+      for (let i = 0; i < count; i++) {
+        pos[i * 3]     += velocities[i].x;
+        pos[i * 3 + 1] += velocities[i].y;
+        pos[i * 3 + 2] += velocities[i].z;
+
+        if (Math.abs(pos[i * 3]) > 5)     velocities[i].x *= -1;
+        if (Math.abs(pos[i * 3 + 1]) > 3) velocities[i].y *= -1;
+        if (Math.abs(pos[i * 3 + 2]) > 2) velocities[i].z *= -1;
+
+        const dx = pos[i * 3] - mouseX * 3;
+        const dy = pos[i * 3 + 1] - mouseY * 2;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 1.5) {
+          const force = (1.5 - dist) * 0.008;
+          pos[i * 3]     += dx * force;
+          pos[i * 3 + 1] += dy * force;
+        }
+      }
+      geometry.attributes.position.needsUpdate = true;
+
+      const linePositions = [];
+      let connections = 0;
+      for (let i = 0; i < count && connections < MAX_CONNECTIONS; i++) {
+        for (let j = i + 1; j < count && connections < MAX_CONNECTIONS; j++) {
+          const dx = pos[i * 3] - pos[j * 3];
+          const dy = pos[i * 3 + 1] - pos[j * 3 + 1];
+          const dz = pos[i * 3 + 2] - pos[j * 3 + 2];
+          const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+          if (d < CONNECTION_DIST) {
+            linePositions.push(
+              pos[i * 3], pos[i * 3 + 1], pos[i * 3 + 2],
+              pos[j * 3], pos[j * 3 + 1], pos[j * 3 + 2]
+            );
+            connections++;
+          }
+        }
+      }
+      lineGeometry.setAttribute("position",
+        new THREE.Float32BufferAttribute(linePositions, 3));
+
+      points.rotation.y += 0.0003;
+      points.rotation.x += 0.0001;
+
+      renderer.render(scene, camera);
+      if (isVisible && !document.hidden) requestAnimationFrame(animate);
+      else setTimeout(() => requestAnimationFrame(animate), 100);
+    }
+
+    function resize() {
+      const parent = canvas.parentElement;
+      if (!parent) return;
+      const w = parent.offsetWidth;
+      const h = parent.offsetHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    resize();
+    window.addEventListener("resize", resize, { passive: true });
+
+    let isVisible = true;
+    if (hasScrollTrigger) {
+      ScrollTrigger.create({
+        trigger: document.getElementById("hero"),
+        start: "top bottom",
+        end: "bottom top",
+        onEnter: () => { isVisible = true; },
+        onLeave: () => { isVisible = false; },
+        onEnterBack: () => { isVisible = true; },
+        onLeaveBack: () => { isVisible = false; }
+      });
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  /* ----------------------------------------------------------
+     14 · SCROLL PROGRESS BAR
+     ---------------------------------------------------------- */
+  function initScrollProgress() {
+    const bar = document.getElementById("scrollProgress");
+    if (!bar) return;
+
+    const update = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+      bar.style.transform = `scaleX(${progress})`;
+    };
+
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+  }
+
+  /* ----------------------------------------------------------
+     15 · ENHANCED MICRO-INTERACTIONS
+     ---------------------------------------------------------- */
+  function initMicroInteractions() {
+    if (prefersReduced) return;
+
+    // Project card 3D tilt on hover (desktop only)
+    if (finePointer) {
+      document.querySelectorAll(".proj").forEach((proj) => {
+        proj.addEventListener("mousemove", (e) => {
+          const rect = proj.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          gsap.to(proj, {
+            rotateY: x * 4,
+            rotateX: -y * 3,
+            duration: 0.4,
+            ease: "power2.out",
+            transformPerspective: 800
+          });
+        });
+        proj.addEventListener("mouseleave", () => {
+          gsap.to(proj, {
+            rotateY: 0, rotateX: 0,
+            duration: 0.7, ease: "elastic.out(1, 0.6)"
+          });
+        });
+      });
+    }
+
+    // Skill tags spring on hover
+    document.querySelectorAll(".cluster__tags li").forEach((tag) => {
+      tag.addEventListener("mouseenter", () => {
+        gsap.to(tag, {
+          y: -3, scale: 1.02,
+          duration: 0.3, ease: "power2.out"
+        });
+      });
+      tag.addEventListener("mouseleave", () => {
+        gsap.to(tag, {
+          y: 0, scale: 1,
+          duration: 0.5, ease: "elastic.out(1, 0.5)"
+        });
+      });
+    });
+
+    // Nav links gold fade on hover
+    document.querySelectorAll(".nav__links a").forEach((link) => {
+      link.addEventListener("mouseenter", () => {
+        gsap.to(link, { color: "#E0B352", duration: 0.3, ease: "power2.out" });
+      });
+      link.addEventListener("mouseleave", () => {
+        gsap.to(link, { color: "", duration: 0.4, ease: "power2.out" });
+      });
+    });
+
+    // Magnetic scale pulse on enter
+    document.querySelectorAll(".magnetic").forEach((el) => {
+      el.addEventListener("mouseenter", () => {
+        gsap.to(el, { scale: 1.05, duration: 0.3, ease: "power2.out" });
+      });
+      el.addEventListener("mouseleave", () => {
+        gsap.to(el, { scale: 1, duration: 0.5, ease: "elastic.out(1, 0.5)" });
+      });
+    });
+
+    // Section heading clip-path reveal
+    document.querySelectorAll(".section-head__title").forEach((title) => {
+      gsap.fromTo(title,
+        { clipPath: "inset(0 100% 0 0)" },
+        {
+          clipPath: "inset(0 0% 0 0)",
+          duration: 1.2,
+          ease: "power3.inOut",
+          scrollTrigger: { trigger: title, start: "top 85%", once: true }
+        }
+      );
+    });
+  }
+
+  /* ----------------------------------------------------------
      BOOT
      ---------------------------------------------------------- */
   function boot() {
     initCursor();
     initBackground();
+    initParticleConstellation();
     initMobileMenu();
     initNavScroll();
+    initScrollProgress();
     initFooterYear();
 
     initMagnetic();
     initProjectReveal();
     initProjectHover();
+    initMicroInteractions();
 
     initLoader(() => {
       initHeroEntrance();
